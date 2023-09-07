@@ -1,3 +1,3 @@
-import LoginHeader from "./LoginHeader.tsx";
+import LoginHeader from './LoginHeader.tsx'
 
 export default LoginHeader
