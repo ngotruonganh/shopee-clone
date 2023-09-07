@@ -1,14 +1,14 @@
 import React from 'react'
-import RegisterHeader from '../../components/RegisterHeader'
 import Footer from '../../components/Footer'
+import LoginHeader from "../../components/LoginHeader";
 
 interface Props {
   children?: React.ReactNode
 }
-export default function RegisterLayout({ children }: Props) {
+export default function LoginLayout({ children }: Props) {
   return (
     <div>
-      <RegisterHeader />
+      <LoginHeader />
       RegisterLayout
       {children}
       <Footer />
