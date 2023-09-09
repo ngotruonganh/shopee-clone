@@ -1,5 +1,5 @@
-import axios, {AxiosError, type AxiosInstance, HttpStatusCode} from 'axios'
-import {toast} from "react-toastify";
+import axios, { AxiosError, type AxiosInstance, HttpStatusCode } from 'axios'
+import { toast } from 'react-toastify'
 
 class Http {
   instance: AxiosInstance

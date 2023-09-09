@@ -1,10 +1,10 @@
-import {Link, useNavigate} from 'react-router-dom'
-import Input from "../../components/Input";
-import {useForm} from "react-hook-form";
-import {getRules} from "../../utils/rules.ts";
-import {useMutation} from "@tanstack/react-query";
-import {loginAccount} from "../../apis/auth.api.ts";
-import {toast} from "react-toastify";
+import { Link, useNavigate } from 'react-router-dom'
+import Input from '../../components/Input'
+import { useForm } from 'react-hook-form'
+import { getRules } from '../../utils/rules.ts'
+import { useMutation } from '@tanstack/react-query'
+import { loginAccount } from '../../apis/auth.api.ts'
+import { toast } from 'react-toastify'
 
 interface FormData {
   email: string
