@@ -6,14 +6,17 @@ import Register from './pages/Register'
 import LoginLayout from './layouts/LoginLayout'
 import MainLayout from './layouts/MainLayout/MainLayout.tsx'
 import Profile from './pages/Profile'
+import { AppContext } from './contexts/app.context.tsx'
+import { useContext } from 'react'
 
 export default function useRouteElements() {
-  const isAuthenticated = true
   function ProtectedRoute() {
+    const { isAuthenticated } = useContext(AppContext)
     return isAuthenticated ? <Outlet /> : <Navigate to='/login' />
   }
 
   function RejectedRoute() {
+    const { isAuthenticated } = useContext(AppContext)
     return !isAuthenticated ? <Outlet /> : <Navigate to='/' />
   }
   const routeElements = useRoutes([
@@ -41,19 +44,19 @@ export default function useRouteElements() {
       ]
     },
     {
-    path: '',
-    element: <RejectedRoute />,
-    children: [
-    {
-      path: '/login',
-      element: (
-        <LoginLayout>
-          <Login />
-        </LoginLayout>
-      )
-    }
-  ]
-},
+      path: '',
+      element: <RejectedRoute />,
+      children: [
+        {
+          path: '/login',
+          element: (
+            <LoginLayout>
+              <Login />
+            </LoginLayout>
+          )
+        }
+      ]
+    },
     {
       path: '',
       element: <ProtectedRoute />,
@@ -67,7 +70,7 @@ export default function useRouteElements() {
           )
         }
       ]
-    },
+    }
   ])
   return routeElements
 }

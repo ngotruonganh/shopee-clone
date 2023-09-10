@@ -6,6 +6,9 @@ import { omit } from 'lodash'
 import { registerAccount } from '../../apis/auth.api.ts'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
+import { AppContext } from '../../contexts/app.context.tsx'
+import { useContext } from 'react'
+import {setProfile} from "../../utils/auth.ts";
 
 interface FormData {
   email: string
@@ -14,6 +17,7 @@ interface FormData {
 }
 
 export default function Register() {
+  const { setIsAuthenticated } = useContext(AppContext)
   const navigate = useNavigate()
   const {
     register,
@@ -30,6 +34,8 @@ export default function Register() {
     const body = omit(data, ['confirm_password'])
     registerAccountMutation.mutate(body, {
       onSuccess: (data) => {
+        setIsAuthenticated(true)
+        setProfile(data.data.data.user)
         toast.success(data.data.message)
         navigate('/login')
       },
