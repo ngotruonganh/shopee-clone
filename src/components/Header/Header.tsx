@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import Popover from '../Popover'
 import { logout } from '../../apis/auth.api.ts'
 import { useContext } from 'react'
@@ -7,10 +7,12 @@ import { useMutation } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
 
 export default function Header() {
+  const navigate = useNavigate()
   const { setIsAuthenticated, isAuthenticated, setProfile, profile } = useContext(AppContext)
   const logoutMutation = useMutation({
     mutationFn: logout,
     onSuccess: () => {
+      navigate('/login')
       toast.success('Đăng xuất thành công')
       setIsAuthenticated(false)
       setProfile(null)

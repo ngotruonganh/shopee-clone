@@ -7,7 +7,6 @@ import { loginAccount } from '../../apis/auth.api.ts'
 import { toast } from 'react-toastify'
 import { AppContext } from '../../contexts/app.context.tsx'
 import { useContext } from 'react'
-import {setProfile} from "../../utils/auth.ts";
 
 interface FormData {
   email: string
@@ -15,7 +14,7 @@ interface FormData {
 }
 
 export default function Login() {
-  const { setIsAuthenticated } = useContext(AppContext)
+  const { setIsAuthenticated,setProfile } = useContext(AppContext)
   const navigate = useNavigate()
   const {
     register,
