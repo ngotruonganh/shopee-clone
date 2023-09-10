@@ -8,7 +8,7 @@ import { useMutation } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
 import { AppContext } from '../../contexts/app.context.tsx'
 import { useContext } from 'react'
-import {setProfile} from "../../utils/auth.ts";
+import { setProfile } from '../../utils/auth.ts'
 
 interface FormData {
   email: string

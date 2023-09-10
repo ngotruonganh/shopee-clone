@@ -14,7 +14,7 @@ interface FormData {
 }
 
 export default function Login() {
-  const { setIsAuthenticated,setProfile } = useContext(AppContext)
+  const { setIsAuthenticated, setProfile } = useContext(AppContext)
   const navigate = useNavigate()
   const {
     register,

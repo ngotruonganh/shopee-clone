@@ -1,13 +1,13 @@
 import { Navigate, Outlet, useRoutes } from 'react-router-dom'
 import RegisterLayout from './layouts/RegisterLayout'
 import Login from './pages/Login'
-import ProductList from './pages/ProductList'
 import Register from './pages/Register'
 import LoginLayout from './layouts/LoginLayout'
 import MainLayout from './layouts/MainLayout/MainLayout.tsx'
 import Profile from './pages/Profile'
 import { AppContext } from './contexts/app.context.tsx'
 import { useContext } from 'react'
+import ProductList from './pages/ProductList/ProductList.tsx'
 
 export default function useRouteElements() {
   function ProtectedRoute() {

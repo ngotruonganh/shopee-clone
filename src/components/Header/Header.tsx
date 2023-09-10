@@ -1,4 +1,4 @@
-import {Link, useNavigate} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Popover from '../Popover'
 import { logout } from '../../apis/auth.api.ts'
 import { useContext } from 'react'

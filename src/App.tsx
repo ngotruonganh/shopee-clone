@@ -5,10 +5,10 @@ import 'react-toastify/dist/ReactToastify.css'
 function App() {
   const routeElements = useRouteElements()
   return (
-    <div>
+    <div className='bg-gray-200'>
       {routeElements}
       <ToastContainer
-        position="top-center"
+        position='top-center'
         autoClose={1000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -17,7 +17,7 @@ function App() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light"
+        theme='light'
       />
     </div>
   )
