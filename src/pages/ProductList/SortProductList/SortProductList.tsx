@@ -1,11 +1,11 @@
-import classNames from "classnames";
-import {order as orderConstant} from "../../../contants/product.ts";
+import classNames from 'classnames'
+import { order as orderConstant } from '../../../contants/product.ts'
 import { QueryConfig } from '../ProductList'
 import { createSearchParams, Link, useNavigate } from 'react-router-dom'
-import {omit} from 'lodash'
-import {ProductListConfig} from "../../../types/product.ts";
-import path from "../../../contants/path.ts";
-import {sortBy} from "../../../contants/product.ts";
+import { omit } from 'lodash'
+import { ProductListConfig } from '../../../types/product.ts'
+import path from '../../../contants/path.ts'
+import { sortBy } from '../../../contants/product.ts'
 interface Props {
   queryConfig: QueryConfig
   pageSize: number

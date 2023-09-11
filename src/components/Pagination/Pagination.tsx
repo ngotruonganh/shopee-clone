@@ -1,6 +1,6 @@
-import {createSearchParams, Link} from "react-router-dom";
-import path from "../../contants/path.ts";
-import {QueryConfig} from "../../pages/ProductList/ProductList.tsx";
+import { createSearchParams, Link } from 'react-router-dom'
+import path from '../../contants/path.ts'
+import { QueryConfig } from '../../pages/ProductList/ProductList.tsx'
 
 interface Props {
   queryConfig: QueryConfig
@@ -44,13 +44,13 @@ export default function Pagination({ queryConfig, pageSize }: Props) {
           return renderDotBefore(index)
         }
         return (
-            <Link
-              to={{
+          <Link
+            to={{
               pathname: path.home,
               search: createSearchParams({
-              ...queryConfig,
-              page: pageNumber.toString()
-            }).toString()
+                ...queryConfig,
+                page: pageNumber.toString()
+              }).toString()
             }}
             key={index}
             className={

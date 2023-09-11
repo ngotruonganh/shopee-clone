@@ -1,6 +1,5 @@
-import React from 'react'
-import RegisterHeader from '../../components/RegisterHeader'
 import Footer from '../../components/Footer'
+import AuthHeader from '../../components/AuthHeader/AuthHeader.tsx'
 
 interface Props {
   children?: React.ReactNode
@@ -8,7 +7,7 @@ interface Props {
 export default function RegisterLayout({ children }: Props) {
   return (
     <div>
-      <RegisterHeader />
+      <AuthHeader title='Đăng kí' />
       {children}
       <Footer />
     </div>

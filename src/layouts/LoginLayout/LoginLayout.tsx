@@ -1,6 +1,5 @@
-import React from 'react'
 import Footer from '../../components/Footer'
-import LoginHeader from '../../components/LoginHeader'
+import AuthHeader from '../../components/AuthHeader'
 
 interface Props {
   children?: React.ReactNode
@@ -8,7 +7,7 @@ interface Props {
 export default function LoginLayout({ children }: Props) {
   return (
     <div>
-      <LoginHeader />
+      <AuthHeader title='Đăng nhập' />
       {children}
       <Footer />
     </div>
