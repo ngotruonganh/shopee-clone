@@ -144,7 +144,7 @@ export default function Header() {
               </button>
             </div>
           </form>
-          <div className='cols-span-1'>
+          <div className='cols-span-1 flex justify-center'>
             <Link to='/'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
