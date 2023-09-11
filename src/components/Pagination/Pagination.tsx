@@ -1,11 +1,15 @@
+import {createSearchParams, Link} from "react-router-dom";
+import path from "../../contants/path.ts";
+import {QueryConfig} from "../../pages/ProductList/ProductList.tsx";
+
 interface Props {
-  page: number
-  setPage: React.Dispatch<React.SetStateAction<number>>
+  queryConfig: QueryConfig
   pageSize: number
 }
 
 const RANGE = 2
-export default function Pagination({ page, setPage, pageSize }: Props) {
+export default function Pagination({ queryConfig, pageSize }: Props) {
+  const page = Number(queryConfig.page)
   const renderPagination = () => {
     let dotAfter = false
     let dotBefore = false
@@ -40,25 +44,62 @@ export default function Pagination({ page, setPage, pageSize }: Props) {
           return renderDotBefore(index)
         }
         return (
-          <button
+            <Link
+              to={{
+              pathname: path.home,
+              search: createSearchParams({
+              ...queryConfig,
+              page: pageNumber.toString()
+            }).toString()
+            }}
             key={index}
             className={
               pageNumber === page
                 ? 'bg-white rounded px-3 py-2 shadow-sm mx-2 cursor-pointer border border-cyan-500'
                 : 'bg-white rounded px-3 py-2 shadow-sm mx-2 cursor-pointer border-transparent'
             }
-            onClick={() => setPage(pageNumber)}
           >
             {pageNumber}
-          </button>
+          </Link>
         )
       })
   }
   return (
-    <div className='flex flex-wrap mt-6 justify-center'>
-      <button className='bg-white rounded px-3 py-2 shadow-sm mx-2 cursor-pointer  border'>Prev</button>
+    <div className='mt-6 flex flex-wrap justify-center'>
+      {page === 1 ? (
+        <span className='mx-2 cursor-not-allowed rounded border bg-white/60 px-3 py-2  shadow-sm'>Prev</span>
+      ) : (
+        <Link
+          to={{
+            pathname: path.home,
+            search: createSearchParams({
+              ...queryConfig,
+              page: (page - 1).toString()
+            }).toString()
+          }}
+          className='mx-2 cursor-pointer rounded border bg-white px-3 py-2  shadow-sm'
+        >
+          Prev
+        </Link>
+      )}
+
       {renderPagination()}
-      <button className='bg-white rounded px-3 py-2 shadow-sm mx-2 cursor-pointer  border'>Next</button>
+      {page === pageSize ? (
+        <span className='mx-2 cursor-not-allowed rounded border bg-white/60 px-3 py-2  shadow-sm'>Next</span>
+      ) : (
+        <Link
+          to={{
+            pathname: path.home,
+            search: createSearchParams({
+              ...queryConfig,
+              page: (page + 1).toString()
+            }).toString()
+          }}
+          className='mx-2 cursor-pointer rounded border bg-white px-3 py-2  shadow-sm'
+        >
+          Next
+        </Link>
+      )}
     </div>
   )
 }
