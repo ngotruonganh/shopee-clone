@@ -3,12 +3,12 @@ import { useForm } from 'react-hook-form'
 import { getRules } from '../../utils/rules'
 import Input from '../../components/Input'
 import { omit } from 'lodash'
-import { registerAccount } from '../../apis/auth.api.ts'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
 import { AppContext } from '../../contexts/app.context.tsx'
 import { useContext } from 'react'
 import { setProfile } from '../../utils/auth.ts'
+import authApi from '../../apis/auth.api.ts'
 
 interface FormData {
   email: string
@@ -28,7 +28,7 @@ export default function Register() {
   } = useForm<FormData>()
   const rules = getRules(getValues)
   const registerAccountMutation = useMutation({
-    mutationFn: (body: Omit<FormData, 'confirm_password'>) => registerAccount(body)
+    mutationFn: (body: Omit<FormData, 'confirm_password'>) => authApi.register(body)
   })
   const onSubmit = handleSubmit((data) => {
     const body = omit(data, ['confirm_password'])

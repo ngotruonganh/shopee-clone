@@ -3,7 +3,7 @@ import Input from '../../components/Input'
 import { useForm } from 'react-hook-form'
 import { getRules } from '../../utils/rules.ts'
 import { useMutation } from '@tanstack/react-query'
-import { loginAccount } from '../../apis/auth.api.ts'
+import authApi from '../../apis/auth.api.ts'
 import { toast } from 'react-toastify'
 import { AppContext } from '../../contexts/app.context.tsx'
 import { useContext } from 'react'
@@ -25,7 +25,7 @@ export default function Login() {
   } = useForm<FormData>()
   const rules = getRules(getValues)
   const loginAccountMutation = useMutation({
-    mutationFn: (body: FormData) => loginAccount(body)
+    mutationFn: (body: FormData) => authApi.login(body)
   })
   const onSubmit = handleSubmit((data) => {
     const body = data
