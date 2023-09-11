@@ -1,3 +1,3 @@
-import ProductRating from "./ProducRating.tsx";
+import ProductRating from './ProducRating.tsx'
 
 export default ProductRating
