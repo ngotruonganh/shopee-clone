@@ -3,7 +3,7 @@ import path from '../../../contants/path.ts'
 import { Category } from '../../../types/category.type.ts'
 import { QueryConfig } from '../ProductList.tsx'
 import classNames from 'classnames'
-import InputNumber from "../../../components/InputNumber";
+import InputNumber from '../../../components/InputNumber'
 
 interface Props {
   queryConfig: QueryConfig

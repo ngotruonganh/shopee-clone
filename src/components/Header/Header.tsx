@@ -1,10 +1,15 @@
 import { Link, useNavigate } from 'react-router-dom'
 import Popover from '../Popover'
 import authApi from '../../apis/auth.api.ts'
-import { useContext } from 'react'
+import {useContext, useEffect} from 'react'
 import { AppContext } from '../../contexts/app.context.tsx'
-import { useMutation } from '@tanstack/react-query'
+import {useMutation, useQuery} from '@tanstack/react-query'
 import { toast } from 'react-toastify'
+import { purchaseStatus } from '../../contants/purchase.ts'
+import purchaseApi from '../../apis/purchase.api.ts'
+import noProduct from '../../assets/images/react.png'
+import { formatCurrency, generateNameId } from '../../utils/utils.ts'
+import path from '../../contants/path.ts'
 
 export default function Header() {
   const navigate = useNavigate()
@@ -22,6 +27,20 @@ export default function Header() {
   const handleLogout = () => {
     logoutMutation.mutate()
   }
+
+  console.log('header')
+
+  useEffect(() =>{
+    return () => (
+      console.log('heaasdfasdf')
+    )
+  }, [])
+
+  const { data: purchasesInCartData } = useQuery({
+    queryKey: ['purchases', { status: purchaseStatus.inCart }],
+    queryFn: () => purchaseApi.getPurchases({ status: purchaseStatus.inCart })
+  })
+  const purchaseInCart = purchasesInCartData?.data.data
   return (
     <div className='pb-5 pt-2 bg-[linear-gradient(-180deg,#f53d2d,#f63)] text-white'>
       <div className='max-w-7xl mx-auto'>
@@ -145,22 +164,70 @@ export default function Header() {
             </div>
           </form>
           <div className='cols-span-1 flex justify-center'>
-            <Link to='/'>
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                fill='none'
-                viewBox='0 0 24 24'
-                strokeWidth={1.5}
-                stroke='currentColor'
-                className='w-8 h-8'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  d='M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z'
-                />
-              </svg>
-            </Link>
+            <Popover
+              renderPopover={
+                <div className='relative top-0 right-0 max-w-[400px] rounded-sm border border-gray-200 bg-white'>
+                  {purchaseInCart ? (
+                    <>
+                      <div className='p-2'>
+                        {purchaseInCart.slice(0, 5).map((purchase) => (
+                          <Link
+                            to={`${path.home}${generateNameId({
+                              name: purchase.product.name,
+                              id: purchase.product._id
+                            })}`}
+                            key={purchase._id}
+                          >
+                            <div className='mt-4 flex w-[300px] justify-between'>
+                              <img src={purchase.product.image} alt={purchase.product.name} className='w-[50px]' />
+                              <span>{purchase.product.name}</span>
+                              <span className='text-orange'>đ{formatCurrency(purchase.product.price)}</span>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                      <div className='flex justify-between'>
+                        <div>
+                          {purchaseInCart.length > 5 ? (
+                              <span> +{purchaseInCart.length - 5} in cart </span>
+                          ) : (
+                              <span></span>
+                          )}
+                        </div>
+                        <Link to='/cart'>
+                          <button>xem gio hang</button>
+                        </Link>
+                      </div>
+                    </>
+                  ) : (
+                    <div className='flex flex-col align-middle'>
+                      <img className='w-[100px] h-[100px]' src={noProduct} alt='no purchase' />
+                      <p>Chưa có sản phẩm</p>
+                    </div>
+                  )}
+                </div>
+              }
+            >
+              <Link to='/cart'>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  strokeWidth={1.5}
+                  stroke='currentColor'
+                  className='w-8 h-8'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    d='M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z'
+                  />
+                </svg>
+                <span>
+                  {purchaseInCart?.length}
+                </span>
+              </Link>
+            </Popover>
           </div>
         </div>
       </div>
