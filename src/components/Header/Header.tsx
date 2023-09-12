@@ -189,8 +189,8 @@ export default function Header() {
                             <span></span>
                           )}
                         </div>
-                        <Link to='/cart'>
-                          <button>xem gio hang</button>
+                        <Link to={path.cart}>
+                          <button>Xem giỏ hàng</button>
                         </Link>
                       </div>
                     </>
@@ -203,7 +203,7 @@ export default function Header() {
                 </div>
               }
             >
-              <Link to='/cart'>
+              <Link to={path.cart}>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'
