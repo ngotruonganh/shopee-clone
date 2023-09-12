@@ -8,7 +8,7 @@ import { ProductListConfig } from '../../types/product.type.ts'
 import useQueryParams from '../../hooks/userQueryParam.ts'
 import productApi from '../../apis/product.api.ts'
 import Pagination from '../../components/Pagination'
-import categoryApi from "../../apis/category.api.ts";
+import categoryApi from '../../apis/category.api.ts'
 
 export type QueryConfig = {
   [key in keyof ProductListConfig]: string
@@ -40,19 +40,19 @@ export default function ProductList() {
     keepPreviousData: true
   })
 
-    const { data: categoriesData } = useQuery({
-        queryKey: ['categories'],
-        queryFn: () => {
-            return categoryApi.getCategories()
-        }
-    })
+  const { data: categoriesData } = useQuery({
+    queryKey: ['categories'],
+    queryFn: () => {
+      return categoryApi.getCategories()
+    }
+  })
   return (
     <div className='bg-gray-200 py-6'>
       <div className='container'>
         {ProductData && (
           <div className='grid grid-cols-12 gap-6'>
             <div className='col-span-3'>
-                <AsideFilter queryConfig={queryConfig} categories={categoriesData?.data.data || []} />
+              <AsideFilter queryConfig={queryConfig} categories={categoriesData?.data.data || []} />
             </div>
             <div className='col-span-9'>
               <SortProductList queryConfig={queryConfig} pageSize={ProductData.data.data.pagination.page_size} />

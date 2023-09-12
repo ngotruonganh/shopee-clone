@@ -20,6 +20,7 @@ export default function useRouteElements() {
     const { isAuthenticated } = useContext(AppContext)
     return !isAuthenticated ? <Outlet /> : <Navigate to='/' />
   }
+
   const routeElements = useRoutes([
     {
       path: '',

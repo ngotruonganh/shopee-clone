@@ -24,7 +24,7 @@ export default function Header() {
   }
   return (
     <div className='pb-5 pt-2 bg-[linear-gradient(-180deg,#f53d2d,#f63)] text-white'>
-      <div className='container mx-auto'>
+      <div className='max-w-7xl mx-auto'>
         <div className='flex justify-end'>
           <Popover
             className='flex items-center py-1 hover:text-gray-300 cursor-pointer'
