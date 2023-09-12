@@ -3,6 +3,7 @@ import path from '../../../contants/path.ts'
 import { Category } from '../../../types/category.type.ts'
 import { QueryConfig } from '../ProductList.tsx'
 import classNames from 'classnames'
+import InputNumber from "../../../components/InputNumber";
 
 interface Props {
   queryConfig: QueryConfig
@@ -88,20 +89,20 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
         <div>Khoản giá</div>
         <form className='mt-2'>
           <div className='flex items-start'>
-            <input
+            <InputNumber
               type='text'
               className='grow'
               name='from'
               placeholder='₫ TỪ'
-              // classNameInput='p-1 w-full outline-none border border-gray-300 focus:border-gray-500 rounded-sm focus:shadow-sm'
+              classNameInput='p-1 w-full outline-none border border-gray-300 focus:border-gray-500 rounded-sm focus:shadow-sm'
             />
             <div className='mx-2 mt-2 shrink-0'>-</div>
-            <input
+            <InputNumber
               type='text'
               className='grow'
               name='from'
               placeholder='₫ ĐẾN'
-              // classNameInput='p-1 w-full outline-none border border-gray-300 focus:border-gray-500 rounded-sm focus:shadow-sm'
+              classNameInput='p-1 w-full outline-none border border-gray-300 focus:border-gray-500 rounded-sm focus:shadow-sm'
             />
           </div>
           <button className='w-full p-2 uppercase bg-orange text-white text-sm hover:bg-orange/80 flex justify-center items-center'>

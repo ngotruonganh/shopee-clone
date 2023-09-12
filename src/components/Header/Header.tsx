@@ -96,7 +96,7 @@ export default function Header() {
                   className='w-full h-full object-cover rounded-full'
                 />
               </div>
-              <div>{profile?.email}</div>
+              <div>{profile?.name}</div>
             </Popover>
           ) : (
             <div className='flex items-center'>
