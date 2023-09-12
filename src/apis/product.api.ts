@@ -1,4 +1,4 @@
-import { Product, ProductList, ProductListConfig } from '../types/product.ts'
+import { ProductType, ProductList, ProductListConfig } from '../types/product.type.ts'
 import http from '../utils/http.ts'
 import { SuccessResponse } from '../types/utils.type.ts'
 
@@ -10,7 +10,7 @@ const productApi = {
     })
   },
   getProductDetail(id: string) {
-    return http.get<SuccessResponse<Product>>(`${URL}/${id}`)
+    return http.get<SuccessResponse<ProductType>>(`${URL}/${id}`)
   }
 }
 
