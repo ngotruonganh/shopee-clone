@@ -1,4 +1,3 @@
-import { useContext } from 'react'
 import { Navigate, Outlet, useRoutes } from 'react-router-dom'
 
 import ProductList from './pages/ProductList'
@@ -9,6 +8,9 @@ import MainLayout from './layouts/MainLayout'
 import RegisterLayout from './layouts/RegisterLayout'
 import LoginLayout from './layouts/LoginLayout'
 import { AppContext } from './contexts/app.context.tsx'
+import path from './contants/path.ts'
+import ProductDetail from './pages/ProductDetail'
+import { useContext } from 'react'
 
 export default function useRouteElements() {
   function ProtectedRoute() {
@@ -28,6 +30,14 @@ export default function useRouteElements() {
       element: (
         <MainLayout>
           <ProductList />
+        </MainLayout>
+      )
+    },
+    {
+      path: path.productDetail,
+      element: (
+        <MainLayout>
+          <ProductDetail />
         </MainLayout>
       )
     },
