@@ -1,9 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom'
 import Popover from '../Popover'
 import authApi from '../../apis/auth.api.ts'
-import {useContext, useEffect} from 'react'
+import { useContext } from 'react'
 import { AppContext } from '../../contexts/app.context.tsx'
-import {useMutation, useQuery} from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
 import { purchaseStatus } from '../../contants/purchase.ts'
 import purchaseApi from '../../apis/purchase.api.ts'
@@ -13,6 +13,7 @@ import path from '../../contants/path.ts'
 
 export default function Header() {
   const navigate = useNavigate()
+  const queryClient = useQueryClient()
   const { setIsAuthenticated, isAuthenticated, setProfile, profile } = useContext(AppContext)
   const logoutMutation = useMutation({
     mutationFn: authApi.logout,
@@ -21,6 +22,7 @@ export default function Header() {
       toast.success('Đăng xuất thành công')
       setIsAuthenticated(false)
       setProfile(null)
+      queryClient.removeQueries({ queryKey: ['purchases', { status: purchaseStatus.inCart }] })
     }
   })
 
@@ -28,17 +30,10 @@ export default function Header() {
     logoutMutation.mutate()
   }
 
-  console.log('header')
-
-  useEffect(() =>{
-    return () => (
-      console.log('heaasdfasdf')
-    )
-  }, [])
-
   const { data: purchasesInCartData } = useQuery({
     queryKey: ['purchases', { status: purchaseStatus.inCart }],
-    queryFn: () => purchaseApi.getPurchases({ status: purchaseStatus.inCart })
+    queryFn: () => purchaseApi.getPurchases({ status: purchaseStatus.inCart }),
+    enabled: isAuthenticated
   })
   const purchaseInCart = purchasesInCartData?.data.data
   return (
@@ -189,9 +184,9 @@ export default function Header() {
                       <div className='flex justify-between'>
                         <div>
                           {purchaseInCart.length > 5 ? (
-                              <span> +{purchaseInCart.length - 5} in cart </span>
+                            <span> +{purchaseInCart.length - 5} in cart </span>
                           ) : (
-                              <span></span>
+                            <span></span>
                           )}
                         </div>
                         <Link to='/cart'>
@@ -223,9 +218,7 @@ export default function Header() {
                     d='M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z'
                   />
                 </svg>
-                <span>
-                  {purchaseInCart?.length}
-                </span>
+                <span>{purchaseInCart?.length}</span>
               </Link>
             </Popover>
           </div>
