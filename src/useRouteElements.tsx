@@ -12,6 +12,7 @@ import RegisterLayout from './layouts/RegisterLayout'
 import LoginLayout from './layouts/LoginLayout'
 import { AppContext } from './contexts/app.context.tsx'
 import path from './contants/path.ts'
+import HistoryPurchase from "./pages/HistoryPurchase/HistoryPurchase.tsx";
 
 export default function useRouteElements() {
   function ProtectedRoute() {
@@ -48,6 +49,14 @@ export default function useRouteElements() {
         <MainLayout>
           <Cart />
         </MainLayout>
+      )
+    },
+    {
+      path: path.cart,
+      element: (
+          <MainLayout>
+            <HistoryPurchase />
+          </MainLayout>
       )
     },
     {

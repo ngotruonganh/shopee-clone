@@ -1,2 +1,2 @@
-import CartLayout from "./CartLayout.tsx";
+import CartLayout from './CartLayout.tsx'
 export default CartLayout
