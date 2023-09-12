@@ -7,12 +7,12 @@ import Cart from './pages/Cart'
 import Register from './pages/Register'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
+import HistoryPurchase from "./pages/HistoryPurchase";
 import MainLayout from './layouts/MainLayout'
 import RegisterLayout from './layouts/RegisterLayout'
 import LoginLayout from './layouts/LoginLayout'
 import { AppContext } from './contexts/app.context.tsx'
 import path from './contants/path.ts'
-import HistoryPurchase from "./pages/HistoryPurchase/HistoryPurchase.tsx";
 
 export default function useRouteElements() {
   function ProtectedRoute() {
@@ -52,11 +52,11 @@ export default function useRouteElements() {
       )
     },
     {
-      path: path.cart,
+      path: path.historyPurchase,
       element: (
-          <MainLayout>
-            <HistoryPurchase />
-          </MainLayout>
+        <MainLayout>
+          <HistoryPurchase />
+        </MainLayout>
       )
     },
     {
