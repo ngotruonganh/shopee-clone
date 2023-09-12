@@ -13,7 +13,7 @@ interface Props {
 export default function AsideFilter({ queryConfig, categories }: Props) {
   const { category } = queryConfig
   return (
-    <div className='py-4'>
+    <div className='p-2'>
       <Link
         to={path.home}
         className={classNames('flex items-center font-bold', {

@@ -1,4 +1,4 @@
-import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import DOMPurify from 'dompurify'
 import { useParams } from 'react-router-dom'
 import productApi from '../../apis/product.api.ts'
@@ -6,9 +6,9 @@ import ProductRating from '../../components/ProductRating'
 import { formatCurrency, formatNumberToSocialStyle, getIdFromNameId, rateSale } from '../../utils/utils.ts'
 import purchaseApi from '../../apis/purchase.api.ts'
 import { toast } from 'react-toastify'
-import {purchaseStatus} from "../../contants/purchase.ts";
-import {useState} from "react";
-import QuantityController from "../../components/QuantityController/QuantityController.tsx";
+import { purchaseStatus } from '../../contants/purchase.ts'
+import { useState } from 'react'
+import QuantityController from '../../components/QuantityController/QuantityController.tsx'
 
 export default function ProductDetail() {
   const [buyCount, setBuyCount] = useState(1)
@@ -39,7 +39,7 @@ export default function ProductDetail() {
   return (
     <div className='bg-gray-200 py-6'>
       <div className='bg-white p-4 shadow'>
-        <div className='container'>
+        <div className='container mx-auto'>
           <div className='grid grid-cols-12 gap-9'>
             <div className='col-span-5'>
               <div className='relative w-full pt-[100%] shadow'>
@@ -116,11 +116,11 @@ export default function ProductDetail() {
               <div className='mt-8 flex items-center'>
                 <div className='capitalize text-gray-500'>Số lượng</div>
                 <QuantityController
-                    onDecrease={handleBuyCount}
-                    onIncrease={handleBuyCount}
-                    onType={handleBuyCount}
-                    value={buyCount}
-                    max={product.quantity}
+                  onDecrease={handleBuyCount}
+                  onIncrease={handleBuyCount}
+                  onType={handleBuyCount}
+                  value={buyCount}
+                  max={product.quantity}
                 />
                 <div className='ml-6 text-sm text-gray-500'>{product.quantity} sản phẩm có sẵn</div>
               </div>
