@@ -7,12 +7,14 @@ import Cart from './pages/Cart'
 import Register from './pages/Register'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
-import HistoryPurchase from "./pages/HistoryPurchase";
+import HistoryPurchase from './pages/HistoryPurchase'
 import MainLayout from './layouts/MainLayout'
 import RegisterLayout from './layouts/RegisterLayout'
 import LoginLayout from './layouts/LoginLayout'
 import { AppContext } from './contexts/app.context.tsx'
 import path from './contants/path.ts'
+import TopHeader from './components/Header'
+import CartHeader from './components/CartHeader'
 
 export default function useRouteElements() {
   function ProtectedRoute() {
@@ -36,28 +38,62 @@ export default function useRouteElements() {
       )
     },
     {
-      path: path.productDetail,
-      element: (
-        <MainLayout>
-          <ProductDetail />
-        </MainLayout>
-      )
+      path: '',
+      element: <ProtectedRoute />,
+      children: [
+        {
+          path: path.productDetail,
+          element: (
+            <MainLayout>
+              <ProductDetail />
+            </MainLayout>
+          )
+        }
+      ]
     },
     {
-      path: path.cart,
-      element: (
-        <MainLayout>
-          <Cart />
-        </MainLayout>
-      )
+      path: '',
+      element: <ProtectedRoute />,
+      children: [
+        {
+          path: path.cart,
+          element: (
+            <>
+              <TopHeader />
+              <CartHeader />
+              <Cart />
+            </>
+          )
+        }
+      ]
     },
     {
-      path: path.historyPurchase,
-      element: (
-        <MainLayout>
-          <HistoryPurchase />
-        </MainLayout>
-      )
+      path: '',
+      element: <ProtectedRoute />,
+      children: [
+        {
+          path: '/profile',
+          element: (
+            <MainLayout>
+              <Profile />
+            </MainLayout>
+          )
+        }
+      ]
+    },
+    {
+      path: '',
+      element: <ProtectedRoute />,
+      children: [
+        {
+          path: path.historyPurchase,
+          element: (
+            <MainLayout>
+              <HistoryPurchase />
+            </MainLayout>
+          )
+        }
+      ]
     },
     {
       path: '',
@@ -83,20 +119,6 @@ export default function useRouteElements() {
             <LoginLayout>
               <Login />
             </LoginLayout>
-          )
-        }
-      ]
-    },
-    {
-      path: '',
-      element: <ProtectedRoute />,
-      children: [
-        {
-          path: '/profile',
-          element: (
-            <MainLayout>
-              <Profile />
-            </MainLayout>
           )
         }
       ]

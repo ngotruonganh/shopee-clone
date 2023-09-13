@@ -29,8 +29,8 @@ export default function ProductDetail() {
       { buy_count: buyCount, product_id: product?._id as string },
       {
         onSuccess: (data) => {
-          toast.success(data.data.message)
           queryClient.invalidateQueries({ queryKey: ['purchases', { status: purchaseStatus.inCart }] })
+          toast.success(data.data.message)
         }
       }
     )
@@ -154,9 +154,9 @@ export default function ProductDetail() {
                   </svg>
                   Thêm vào giỏ hàng
                 </button>
-                <button className='fkex ml-4 h-12 min-w-[5rem] items-center justify-center rounded-sm bg-orange px-5 capitalize text-white shadow-sm outline-none hover:bg-orange/90'>
-                  Mua ngay
-                </button>
+                {/*<button className='fkex ml-4 h-12 min-w-[5rem] items-center justify-center rounded-sm bg-orange px-5 capitalize text-white shadow-sm outline-none hover:bg-orange/90'>*/}
+                {/*  Mua ngay*/}
+                {/*</button>*/}
               </div>
             </div>
           </div>

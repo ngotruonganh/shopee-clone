@@ -19,7 +19,6 @@ export default function Login() {
   const {
     register,
     handleSubmit,
-    watch,
     getValues,
     formState: { errors }
   } = useForm<FormData>()
@@ -41,8 +40,6 @@ export default function Login() {
       }
     })
   })
-  const value = watch()
-  console.log(value)
 
   return (
     <div className='bg-orange'>
@@ -52,6 +49,7 @@ export default function Login() {
             <form className='p-10 rounded bg-white shadow-sm' onSubmit={onSubmit} noValidate>
               <div className='text-2xl'>Đăng nhập</div>
               <Input
+                defaultValue='guest@gmail.com'
                 name='email'
                 register={register}
                 type='email'
@@ -61,6 +59,7 @@ export default function Login() {
                 rules={rules.email}
               />
               <Input
+                defaultValue='123456'
                 name='password'
                 register={register}
                 type='password'

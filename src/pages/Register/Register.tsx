@@ -22,7 +22,6 @@ export default function Register() {
   const {
     register,
     handleSubmit,
-    watch,
     getValues,
     formState: { errors }
   } = useForm<FormData>()
@@ -44,8 +43,6 @@ export default function Register() {
       }
     })
   })
-  const value = watch()
-  console.log(value)
 
   return (
     <div className='bg-orange'>

@@ -1,3 +1,3 @@
-import Header from './Header.tsx'
+import TopHeader from './TopHeader.tsx'
 
-export default Header
+export default TopHeader

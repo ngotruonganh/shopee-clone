@@ -5,11 +5,12 @@ import purchaseApi from '../../apis/purchase.api.ts'
 import path from '../../contants/path.ts'
 import { formatCurrency, generateNameId } from '../../utils/utils.ts'
 import QuantityController from '../../components/QuantityController/QuantityController.tsx'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Purchase } from '../../types/purchase.type.ts'
 import { produce } from 'immer'
 import { keyBy } from 'lodash'
 import { toast } from 'react-toastify'
+import { AppContext } from '../../contexts/app.context.tsx'
 
 interface ExtendedPurchase extends Purchase {
   disabled: boolean
@@ -23,9 +24,12 @@ interface ExtendedPurchase extends Purchase {
 
 export default function Cart() {
   const [extendedPurchases, setExtendedPurchases] = useState<ExtendedPurchase[]>([])
+  const { isAuthenticated } = useContext(AppContext)
+
   const { data: purchasesInCartData, refetch } = useQuery({
     queryKey: ['purchases', { status: purchaseStatus.inCart }],
-    queryFn: () => purchaseApi.getPurchases({ status: purchaseStatus.inCart })
+    queryFn: () => purchaseApi.getPurchases({ status: purchaseStatus.inCart }),
+    enabled: isAuthenticated
   })
   const updatePurchaseMutation = useMutation({
     mutationFn: purchaseApi.updatePurchase,
@@ -133,7 +137,7 @@ export default function Cart() {
 
   return (
     <div className='bg-neutral-100 py-16'>
-      <div className='container'>
+      <div className='max-w-7xl mx-auto'>
         <div className='overflow-auto'>
           <div className='min-w-[1000px]'>
             <div className='grid grid-cols-12 rounded-sm bg-white py-5 px-9 text-sm capitalize text-gray-500 shadow'>

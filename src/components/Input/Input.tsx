@@ -9,6 +9,7 @@ interface Props {
   register: UseFormRegister<any>
   rules?: RegisterOptions
   autoComplete?: string
+  defaultValue?: string
 }
 
 export default function Input({
@@ -16,14 +17,16 @@ export default function Input({
   errorMessage,
   placeholder,
   className,
-  autoComplete,
   name,
   register,
-  rules
+  rules,
+  autoComplete,
+  defaultValue
 }: Props) {
   return (
     <div className={className}>
       <input
+        defaultValue={defaultValue}
         type={type}
         className='p-3 w-full outline-none border border-gray-300 focus:border-gray-500 rounded-sm focus:shadow-sm'
         placeholder={placeholder}
