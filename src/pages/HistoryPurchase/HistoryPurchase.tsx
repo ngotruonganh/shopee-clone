@@ -7,6 +7,7 @@ import purchaseApi from '../../apis/purchase.api.ts'
 import { PurchaseListStatus } from '../../types/purchase.type.ts'
 import path from '../../contants/path.ts'
 import { formatCurrency, generateNameId } from '../../utils/utils.ts'
+import { Helmet } from 'react-helmet-async'
 
 const purchaseTabs = [
   { status: purchaseStatus.all, name: 'Tất cả' },
@@ -48,6 +49,10 @@ export default function HistoryPurchase() {
 
   return (
     <div>
+      <Helmet>
+        <title>Đơn mua của bạn | Shop</title>
+        <meta name='description' content='Đơn mua của bạn' />
+      </Helmet>
       <div className='overflow-x-auto'>
         <div className='min-w-[700px]'>
           <div className='sticky top-0 flex rounded-t-sm shadow-sm'>{purchaseTabsLink}</div>

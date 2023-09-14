@@ -9,6 +9,7 @@ import useQueryParams from '../../hooks/userQueryParam.ts'
 import productApi from '../../apis/product.api.ts'
 import Pagination from '../../components/Pagination'
 import categoryApi from '../../apis/category.api.ts'
+import { Helmet } from 'react-helmet-async'
 
 export type QueryConfig = {
   [key in keyof ProductListConfig]: string
@@ -48,6 +49,10 @@ export default function ProductList() {
   })
   return (
     <div className='bg-gray-200 py-6'>
+      <Helmet>
+        <title>Shop</title>
+        <meta name='description' content='Shop' />
+      </Helmet>
       <div className='container mx-auto'>
         {ProductData && (
           <div className='grid grid-cols-12 gap-6'>

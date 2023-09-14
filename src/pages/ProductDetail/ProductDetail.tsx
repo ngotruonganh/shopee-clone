@@ -1,6 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import DOMPurify from 'dompurify'
 import { useParams } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
+
 import productApi from '../../apis/product.api.ts'
 import ProductRating from '../../components/ProductRating'
 import { formatCurrency, formatNumberToSocialStyle, getIdFromNameId, rateSale } from '../../utils/utils.ts'
@@ -38,6 +40,10 @@ export default function ProductDetail() {
   if (!product) return null
   return (
     <div className='bg-gray-200 py-6'>
+      <Helmet>
+        <title>{product.name} | Shop</title>
+        <meta name='description' content='Đăng kí tài khoản' />
+      </Helmet>
       <div className='bg-white p-4 shadow'>
         <div className='container mx-auto'>
           <div className='grid grid-cols-12 gap-9'>

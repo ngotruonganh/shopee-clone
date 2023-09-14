@@ -11,6 +11,7 @@ import { produce } from 'immer'
 import { keyBy } from 'lodash'
 import { toast } from 'react-toastify'
 import { AppContext } from '../../contexts/app.context.tsx'
+import { Helmet } from 'react-helmet-async'
 
 interface ExtendedPurchase extends Purchase {
   disabled: boolean
@@ -137,6 +138,10 @@ export default function Cart() {
 
   return (
     <div className='bg-neutral-100 py-16'>
+      <Helmet>
+        <title>giỏ hàng | Shop</title>
+        <meta name='description' content='Giỏ hàng của bạn' />
+      </Helmet>
       <div className='max-w-7xl mx-auto'>
         <div className='overflow-auto'>
           <div className='min-w-[1000px]'>
