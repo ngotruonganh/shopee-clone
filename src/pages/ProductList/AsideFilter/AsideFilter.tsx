@@ -4,6 +4,7 @@ import { Category } from '../../../types/category.type.ts'
 import { QueryConfig } from '../ProductList.tsx'
 import classNames from 'classnames'
 // import InputNumber from '../../../components/InputNumber'
+import { useTranslation } from 'react-i18next'
 
 interface Props {
   queryConfig: QueryConfig
@@ -11,6 +12,7 @@ interface Props {
 }
 
 export default function AsideFilter({ queryConfig, categories }: Props) {
+  const { t } = useTranslation()
   const { category } = queryConfig
   return (
     <div className='p-2'>
@@ -33,7 +35,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
             </g>
           </g>
         </svg>
-        Tất cả danh mục
+        {t('All Categories')}
       </Link>
       <div className='bg-gray-300 h-[1px] my-4' />
       <ul>

@@ -8,8 +8,10 @@ import { purchaseStatus } from '../../contants/purchase.ts'
 import purchaseApi from '../../apis/purchase.api.ts'
 import { useContext } from 'react'
 import { AppContext } from '../../contexts/app.context.tsx'
+import { useTranslation } from 'react-i18next'
 
 export default function MainHeader() {
+  const { t } = useTranslation()
   const { isAuthenticated } = useContext(AppContext)
   const { data: purchasesInCartData } = useQuery({
     queryKey: ['purchases', { status: purchaseStatus.inCart }],
@@ -81,7 +83,7 @@ export default function MainHeader() {
                     </div>
                     <Link to={path.cart}>
                       <button className='mt-20 flex h-10 w-52 items-center justify-center bg-red-500 text-sm uppercase text-white hover:bg-red-600 sm:ml-4 sm:mt-0'>
-                        Xem Giỏ Hàng
+                        {t('Cart')}
                       </button>
                     </Link>
                   </div>
