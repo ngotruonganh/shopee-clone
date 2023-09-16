@@ -10,7 +10,7 @@ class Http {
     this.accessToken = getAccessTokenFromLS()
     this.instance = axios.create({
       baseURL: 'https://api-ecom.duthanhduoc.com/',
-      timeout: 10000,
+      timeout: 3000,
       headers: {
         'Content-Type': 'application/json'
       }

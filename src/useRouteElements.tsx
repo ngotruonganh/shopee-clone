@@ -15,6 +15,7 @@ import { AppContext } from './contexts/app.context.tsx'
 import path from './contants/path.ts'
 import TopHeader from './components/Header'
 import CartHeader from './components/CartHeader'
+import NotFound from './pages/NotFound'
 
 export default function useRouteElements() {
   function ProtectedRoute() {
@@ -122,6 +123,14 @@ export default function useRouteElements() {
           )
         }
       ]
+    },
+    {
+      path: '*',
+      element: (
+        <MainLayout>
+          <NotFound />
+        </MainLayout>
+      )
     }
   ])
   return routeElements
