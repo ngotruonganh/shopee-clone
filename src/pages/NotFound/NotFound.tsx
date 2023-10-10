@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import { Link } from 'react-router-dom'
 
 export default function NotFound() {
   return (
@@ -260,9 +260,7 @@ export default function NotFound() {
                 </defs>
               </svg>
             </div>
-            <p className='text-sm md:text-base text-orange p-2 mb-4'>
-              The stuff you were looking for doesn't exist
-            </p>
+            <p className='text-sm md:text-base text-orange p-2 mb-4'>The stuff you were looking for doesn't exist</p>
             <Link
               to='/'
               className='bg-transparent hover:bg-yellow-400 text-yellow-800 hover:text-orange rounded shadow hover:shadow-lg py-2 px-4 border border-yellow-800 hover:border-transparent'
